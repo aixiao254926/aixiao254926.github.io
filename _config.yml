@@ -1,12 +1,12 @@
 # Basic
-title: 潘柏信
+title: 爱笑
 subtitle: 个人站
 description: 欢迎来到我的个人站~
 # 头像里面的标题
-avatarTitle: leopardpan
+avatarTitle: aixiao254926
 # 头像里面的描述
-avatarDesc: iOS / 机器学习
-url: "http://baixin.io"
+avatarDesc: 大家来玩啊！
+url: "http://aixiao254926.github.io"
 
 # Comment
 comment:
@@ -16,13 +16,13 @@ comment:
 
 # Social
 social:
-    weibo: 5366874726 
-    github: leopardpan
+    QQ : 1455487145 
+    github: aixiao254926
     # zhihu: panpanleopard
     # juejin: xxx
     jianshu: 2ada30d8d0f7
     # twitter: 
-    mail: leopardpan@icloud.com
+    mail: 1455487145@qq.com
 
 
 # 百度统计 
@@ -68,7 +68,7 @@ nav:
     
 
 # Pagination
-gems: [jekyll-paginate,jekyll-sitemap]
+gems: [jekyll-paginate]
 paginate: 20
 paginate_path: "page/:num/"
 
