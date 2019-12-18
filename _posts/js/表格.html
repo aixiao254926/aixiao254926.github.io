@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+        function table(){
+            document.write("<table width='900' height='450' aglin='center' border='1' cellspacing='0'>");
+            for(var i=1;i<=7;i++){
+                var bgcolor= i%2==0?'yellow':'red';
+                document.write('<tr bgcolor="'+ bgcolor +'">');
+                for (var j=1;j<=8;j++){
+                    document.write("<td>");
+                    document.write("</td>");
+                }
+                document.write("</tr>");
+            }
+            document.write("</table>");
+        }
+        table()
+        table()
+        var aixiao = function(){
+            document.write("123");
+        }
+        aixiao()
+        var lala = new Function('uname','alert("hello"+uname)');
+        lala("啦啦啦");
+    </script>
+</html>

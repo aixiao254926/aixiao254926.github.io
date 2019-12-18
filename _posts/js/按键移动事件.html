@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #red{
+            width:150px;
+            height:150px;
+            background:brown;
+            position:absolute;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        #red img{
+            display:block;
+            width:100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="red">
+        <img src="/home/aixiao/桌面/1.jpeg" alt="">
+    </div>
+</body>
+<script>
+    var red = document.getElementById('red');
+    var nw = window.innerWidth;
+    var nh = window.innerHeight;
+    window.onresize = function(){
+        nw = window.innerWidth;
+        nh = window.innerHeight;
+    }
+    var stepX = 1;
+    var stepY = 1;
+    var runX;
+    var runY;
+    function moveX(step){
+        if(runX){
+            return;
+        }
+        runX = setInterval(function(){
+            var newleft = red.offsetLeft + step;
+            if(newleft<=0){
+                newleft=0;
+            }
+            if(newleft>=nw-red.offsetWidth){
+                newleft = nw-red.offsetWidth;
+            }
+            red.style.left = newleft + 'px';
+        },2);
+    }
+    function moveY(step){
+        if(runY){
+            return;
+        }
+        runY = setInterval(function(){
+            var newtop = red.offsetTop + step;
+            if(newtop<=0){
+                newtop=0;
+            }
+            if(newtop>=nh-red.offsetHeight){
+                newtop = nh-red.offsetHeight;
+            }
+            red.style.top = newtop + 'px';
+        },2);
+    }
+    window.onkeydown = function(e){
+        var e = e || window.event;
+        switch(e.keyCode){
+            case 37:
+                moveX(-stepX);
+                break;
+            case 38:
+                moveY(-stepY);
+                break;
+            case 39:
+                moveX(stepX);
+                break;
+            case 40:
+                moveY(stepY);
+                break;
+        }
+    }
+    window.onkeyup = function(){
+        clearInterval(runX);
+        runX = undefined; 
+        clearInterval(runY);
+        runY = undefined; 
+    }
+</script>
+</html>

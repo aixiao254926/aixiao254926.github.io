@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        li{
+            list-style:none;
+        }
+        a{
+            text-decoration: none;
+        }
+        #wrap{
+            width:100%;
+            height:40px;
+            background:#01204F;
+            margin-top:135px;
+            position: fixed;
+        }
+        #wrap nav{
+            width:980px;
+            height:40px;
+            /* background:red; */
+            margin:0 auto;
+            position: relative;
+        }
+        #wrap nav>ul{
+            position:relative;
+            z-index: 1;
+        }
+        #wrap nav>ul>li{
+            float:left;
+            height:40px;
+            line-height:40px;
+        }
+        #wrap nav>ul>li>a{
+            color: #fff;
+            font-family: 微软雅黑;
+            font-weight:bold;
+            font-size:14px;
+            display:block;
+            padding:0px 10px;
+        }
+        #wrap nav>ul>li#active{
+            background:#cc0000;
+        }
+
+        #move{
+            /* width:80px; */
+            height:40px;
+            background:#cc0000;
+            position:absolute;
+            /* left:20px; */
+            transition: all 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <nav>
+            <ul id="menu">
+                <li><a href="">首页</a></li>
+                <li><a href="">百家号</a></li>
+                <li id="active"><a href="">国际</a></li>
+                <li><a href="">军事</a></li>
+                <li><a href="">社会</a></li>
+                <li><a href="">财经</a></li>
+                <li><a href="">娱乐</a></li>
+                <li><a href="">体育</a></li>
+                <li><a href="">互联网</a></li>
+                <li><a href="">科技</a></li>
+                <li><a href="">游戏</a></li>
+                <li><a href="">时尚</a></li>
+                <li><a href="">女人</a></li>
+                <li><a href="">汽车</a></li>
+                <li><a href="">房产</a></li>
+                <li><a href="">个性推荐</a></li>
+            </ul>
+            <div id="move"></div>
+        </nav>
+    </div>
+</body>
+<script>
+    //获取元素
+    var move = document.getElementById('move');
+    var menu = document.getElementById('menu');
+    var active = document.getElementById('active');
+    //获取所有的子节点元素
+    var lis = menu.getElementsByTagName('li');
+    //当页面进入时，设置move元素的大小
+    //页面初始化时，move的样式
+    move.style.width = active.offsetWidth + 'px';
+    move.style.left = active.offsetLeft + 'px';
+    //设置所有li的鼠标移入事件
+    for(var i = 0;i<lis.length;i++){
+        lis[i].onmouseover = function(){
+            move.style.left = this.offsetLeft + 'px';
+            move.style.width = this.offsetWidth + 'px';
+        }
+        lis[i].onmouseout = function(){
+            move.style.left = active.offsetLeft +'px';
+            move.style.width = active.offsetWidth + 'px';
+        }
+    }
+</script>
+</html>

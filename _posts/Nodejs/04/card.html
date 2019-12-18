@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form 表单</title>
+</head>
+<body>
+    <h1>form表单1</h1>
+    <hr>
+    <form action="./tupian1" method="post" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td>姓名:</td>
+                <td><input type="text"name="name"></td>
+            </tr>
+            <tr>
+                <td>爱好:</td>
+                <td>
+                    <input type="checkbox"name="likes"value="movie">电影
+                    <input type="checkbox"name="likes"value="book">读书
+                    <input type="checkbox"name="likes"value="write">看报
+                    <input type="checkbox"name="likes"value="huahua">画画
+                </td>
+            </tr>
+            <tr>
+                <td>图片</td>
+                <td>
+                    <input type="file"name='pic' multiple>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <button>提交</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>

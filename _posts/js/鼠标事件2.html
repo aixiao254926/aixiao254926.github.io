@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:o;
+            padding:0;
+        }
+        #ball{
+            width:200px;
+            height:200px;
+            border-radius: 50%;
+            background:red;
+            position:absolute;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="ball"></div>
+</body>
+<script>
+    //获取元素
+    var ball = document.getElementById('ball');
+    //设置鼠标的移动事件--将鼠标的移动事件交给外部更大的容器
+    window.onmousemove = function(e){
+        //计算最新的left和top的值=鼠标处于ball元素的几何中心点
+        var newLeft = e.clientX - ball.offsetWidth/2;
+        var newTop = e.clientY - ball.offsetHeight/2;
+        ball.style.left = newLeft +'px';
+        ball.style.top = newTop +'px';
+    }
+</script>
+</html>

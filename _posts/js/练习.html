@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background:#2A2A2A;
+        }
+        li{
+            list-style:none;
+        }
+        #show{
+            width:224px;
+            height:230px;
+            /* background:aqua; */
+            margin: 0 auto;
+            margin-top:200px;
+            /* overflow-x:scroll; */
+            overflow:hidden;
+        }
+        #show #wrap{
+            width:2688px;
+        }
+        #show ul{
+            width:1344px;
+            float:left;
+        }
+        #show ul li{
+            width:224px;
+            height:230px;
+            float:left;
+        }
+        #show ul li img{
+            display:block;
+            width:100%;
+            height:100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="show">
+        <div id="wrap">
+            <ul>
+                <li><img src="./1.png" alt=""></li>
+                <li><img src="./2.png" alt=""></li>
+                <li><img src="./3.png" alt=""></li>
+                <li><img src="./4.png" alt=""></li>
+                <li><img src="./5.png" alt=""></li>
+                <li><img src="./6.png" alt=""></li>
+            </ul>
+            <!-- <ul>
+                <li><img src="./1.png" alt=""></li>
+                <li><img src="./2.png" alt=""></li>
+                <li><img src="./3.png" alt=""></li>
+                <li><img src="./4.png" alt=""></li>
+                <li><img src="./5.png" alt=""></li>
+                <li><img src="./6.png" alt=""></li>
+            </ul> -->
+        </div>
+    </div>
+</body>
+<script>
+    //获取元素
+    var show = document.getElementById('show');
+    var ul = document.querySelector('#show ul');
+    var wrap = document.getElementById('wrap');
+    //将ul克隆一份,追加到wrap中
+    wrap.appendChild(ul.cloneNode(true));
+    //设置show的水平方向滚动条的值
+    show.scrollLeft = 0;
+    //获取一个ul的宽度
+    var ulwidth = ul.offsetWidth;
+    //设置步经
+    var step = 1;
+    var run;
+    function autorun(){
+        //使用定时器,控制show元素的水平方向滚动条的值依次增大
+        run = setInterval(function(){
+            //show元素的scrolleft = 现有的scrolleft+step
+            var newsl = show.scrollLeft + step;
+            //如果将第一个ul滚动结束之后,相当于滚动了ul的宽度
+            if(newsl>=ulwidth){
+                //重置到第一张
+                newsl = 0;
+            }
+            //赋值操作 
+            show.scrollLeft = newsl;
+        },5);
+    }
+    autorun();
+    //对于show元素的鼠标移入和移除事件
+    show.onmouseenter = function(){
+        clearInterval(run);
+    }
+    show.onmouseleave = function(){
+        autorun();
+    }
+</script>
+</html>

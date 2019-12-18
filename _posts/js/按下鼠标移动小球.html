@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #red{
+            width:200px;
+            height:200px;
+            background:red;
+            border-radius: 50%;
+            position:absolute;
+            cursor:alias;
+        }
+    </style>
+</head>
+<body>
+    <div id="red"></div>
+</body>
+<script>
+    //获取元素
+    var red = document.getElementById('red');
+    var leftcha;
+    var topcha;
+    var isDown = false;
+    //鼠标移动事件
+    red.onmousedown = function(e){
+        leftcha = e.clientX - this.offsetLeft;
+        topcha = e.clientY - this.offsetTop;
+        isDown = true;
+    }
+    red.onmouseup = function(){
+        isDown = false;
+    }
+    window.onmousemove = function(e){
+        if(!isDown){
+            return;
+        }
+        var newLeft = e.clientX - leftcha;
+        var newTop = e.clientY - topcha;
+        red.style.left = newLeft+'px';
+        red.style.top = newTop+'px';
+    }
+</script>
+</html>

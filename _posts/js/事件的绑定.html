@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #red{
+            width:200px;
+            height:200px;
+            background: red;
+            transition: 0.5s;
+        }
+        #blue{
+            width:200px;
+            height:200px;
+            background: blue;
+        }
+        #green{
+            width:200px;
+            height:200px;
+            background:green;
+        }
+    </style>
+</head>
+<body>
+    <div id="red"></div>
+    <div id="blue"></div>
+    <div id="green" onclick="changeBg(this)"></div>
+</body>
+<script>
+    //获取元素
+    var red = document.getElementById('red');
+    var blue = document.getElementById('blue');
+    // var green = document.getElementById('green');
+    //1.使用on事件属性定义事件
+    // red事件源click事件类型function事件操作句柄/事件处理函数
+    red.onclick = function(){
+        //修改元素样式
+        this.style.borderRadius = '50%';
+        this.style.background = 'cyan';
+    }
+    //2.设置元素监听
+    blue.addEventListener('click',function(){
+        this.style.background = 'red';
+    })
+    blue.addEventListener('click',function(){
+        this.style.borderRadius = '50%';
+    })
+    //3.直接在html中使用js的事件属性
+    //定义函数
+    function changeBg(obj){
+        obj.style.background = 'pink';
+    }
+</script>
+</html>

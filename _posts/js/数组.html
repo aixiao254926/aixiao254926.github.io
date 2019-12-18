@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    
+</body>
+<script>
+    var arr = [100,90,200,201,[1000,206]];
+    function arr_max(arr){
+        var max;
+        arr.forEach(function(value){
+            if(Array.isArray(value)){
+                if(max==undefined){
+                max = arr_max(value);    
+                }else{
+                    if(arr_max(value)>max){
+                        max = arr_max(value);
+                    }
+                }
+            }else{            
+                if(max==undefined){
+                max = value;
+            }else{
+                if(value>max){
+                    max=value;
+                }
+            }
+        }
+        })
+
+        return max;
+    }
+    var max = arr_max(arr);
+    console.log(max)
+</script>
+</html>

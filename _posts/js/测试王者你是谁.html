@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width",initial-scale=1.0,maxinum-scale=1.0>
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #title{
+            text-align: center;
+            margin-top:20px;
+        }
+        #username{
+            width:80%;
+            height:30px;
+            border:1px solid #ccc;
+            display:block;
+            margin:0 auto;
+            margin-top:20px;
+            font-size:20px;
+        }
+        #btn{
+            width:40%;
+            height: 30px;
+            display: block;
+            margin:0 auto;
+            margin-top:10px;
+        }
+        #er{
+            display: none;
+        }
+        #bt{
+            width:40%;
+            height: 30px;
+            display: block;
+            margin:0 auto;
+            margin-top:10px;
+            /* display: none; */
+        }
+        #heroName{
+            margin-left:20px 0px 20px 0px;
+            font-size:18px;
+        }
+        #heroName>span{
+            font-size:20px;
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <h3 id="title">测一测,你是王者荣耀的哪位英雄?</h3>
+    <div id="show">
+        <div id="yi">
+            <input type="text" id="username">
+            <button id='btn'>开启命运之轮</button>
+        </div>
+        <div id="er">
+            <h3 id="heroName"><h3>
+            <button id="bt">再来一次</button>
+        </div>
+    </div>
+    
+</body>
+<script>
+    //获取元素
+    var username = document.getElementById('username');
+    var btn = document.getElementById('btn');
+    var bt = document.getElementById('bt')
+    var show = document.getElementById('show');
+    var yi = document.getElementById('yi');
+    var er = document.getElementById('er');
+    var heroName = document.getElementById('heroName');
+    var heros = ['曹操','后羿','火舞','猴子','刘备','关羽','张飞']
+    //获取btn的单击事件
+    btn.onclick = function(){
+        //获取用户输入的名字;去除首尾空格
+        var uname = username.value.trim();
+        if(uname ==""){
+            alert("请输入你的姓名!");
+            return;
+        }
+        var num = 0;
+        for (var i=0;i<uname.length;i++){
+            num += uname.charCodeAt(i);
+        }
+        var index = num %heros.length;
+        // er.innerHTML = '<h3>吾之姓名:<span>'+heros[index]+'</span><h3>';
+        er.style.display = 'block';
+        yi.style.display = 'none';
+        heroName.innerHTML = '吾之姓名:<span>'+heros[index]+'</span>';
+    }
+    bt.onclick = function(){
+        er.style.display ='none';
+        yi.style.display = 'block';  
+    }
+</script>
+</html>

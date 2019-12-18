@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #show {
+            width:480px;
+            height:320px;
+            background: cyan;
+            margin: 0 auto;
+            margin-top:100px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        #uname{
+            width:320px;
+            height:80px;
+            background: red;
+            color:aquamarine;
+            font-size:24px;
+            line-height:80px;
+            margin: 0 auto;
+            margin-top:80px;
+            border-radius: 20px; 
+            font-weight:bold;  
+            text-align:center;                                                 
+        }
+        #btn{
+            width:200px;
+            height:60px;
+            border:none;
+            background: blueviolet;
+            margin:0 auto;
+            margin-top:30px;
+            border-radius: 20px;
+            text-align: center;
+            font-weight:bold;
+            line-height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div id="show">
+        <div id="uname">花木兰</div>
+        <div id="btn">开始</div>
+    </div>
+</body>
+<script>
+    var btn = document.getElementById('btn');
+    var uname = document.getElementById('uname');
+    var users = ['曹操','刘备','关羽','花木兰'];
+    var run;
+    btn.onclick = function(){
+        if(this.innerHTML == "开始"){
+            if(run){
+                return;
+        }
+        run = setInterval(function(){
+            var index = rand(0,users.length-1);
+            uname.innerHTML = users[index];   
+        },200)  
+        this.innerHTML="停止";
+    }else{
+        clearInterval(run);
+        run = undefined;
+        this.innerHTML="开始";
+        }
+    }
+    function rand(m,n){
+        var num = Math.floor(Math.random()*(n-m+1))+m;
+        return num;
+    }
+</script>
+</html>

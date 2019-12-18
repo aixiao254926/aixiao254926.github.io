@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>手风琴特效</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background-color:#F5F7FB;
+        }
+        li{
+            list-style:none;
+        }
+        #role-show{
+            width:1200px;
+            height:230px;
+            background:aquamarine;
+            margin:0 auto;
+            margin-top:200px;
+        }
+        #role-show .zu{
+            width:90px;
+            height:230px;
+            background:#3B88ED;
+            float: left;
+            /* 当前种族以外的东西不能显示 */
+            overflow: hidden;
+            /* 设置过渡 */
+            transition: width .3s linear;
+            position: relative;
+        }
+        #role-show .zu .zuname{
+            width:90px;
+            height:230px;
+            background:#3B88ED;
+            position: relative;
+            /* float:left; */
+        }
+        #role-show .zu .zuname span{
+            display: block;
+            width:22px;
+            font-size:20px;
+            font-weight: bold;
+            color:#FFF;
+            position:absolute;
+            top:90px;
+            left:50%;
+            margin:-11px;
+        }
+        #role-show .zu .zuname .sanjiao{
+            width:0px;
+            height:0px;
+            border:10px solid transparent;
+            border-left-color:#F24854;
+            position:absolute;
+            top:50%;
+            right:-20px;
+            margin-top:-10px;
+            display:none;
+            z-index: 2;
+        }
+        #role-show .zu .role{
+            width:930px;
+            height:230px;
+            background:yellowgreen;
+            /* float:left; */
+            position:absolute;
+            top:0;
+            left:90px;
+        }
+        #role-show .zu .role ul li{
+            width:78px;
+            float:left;
+            position: relative;
+            transition: width 0.3s linear;
+            background-color:#F5F9FF;
+        }
+        #role-show .zu .role ul li .role-name{
+            width:76px;
+            height:230px;
+            border:1px solid #fff;
+            background:#EAF1FA;
+            position: absolute;
+            right:0;
+            top:0;
+        }
+        #role-show .zu .role ul li .role-name .role-img{
+            width:76px;
+            height:120px;
+            background:no-repeat;
+            background-position: center bottom;
+            position:absolute;
+            bottom:20px;
+        }
+        #role-show .zu .role ul li .role-name span{
+            display: block;
+            width:22px;
+            font-size:16px;
+            position:absolute;
+            top:20px;
+            left:50%;
+            margin-left:-11px;
+        }
+        #role-show .zu .role ul li .role-intro{
+            width:462px;
+            height:230px;
+            position: relative;
+        }
+        #role-show .zu .role ul li .role-intro .jieshao{
+            position:absolute;
+            top:50px;
+            left:205px;
+            font-weight: bold;
+        }
+        #role-show .zu .role ul li .role-intro .menpai{
+            position: absolute;
+            top:100px;
+            left:205px;
+            font-weight:bold;
+        }
+        #role-show .zu .role ul li .role-intro .jinru{
+            position: absolute;
+            top:140px;
+            left:205px;
+        }
+        /* 依次设置每一个角色样式 */
+        #role-show .zu:nth-child(1) .role ul li:nth-child(1) .role-name .role-img{
+            background-image:url('./xiyou/ren/jxk.png')
+        }
+        #role-show .zu:nth-child(1) .role ul li:nth-child(2) .role-name .role-img{
+            background-image:url('./xiyou/ren/xys.png')
+        }
+        #role-show .zu:nth-child(1) .role ul li:nth-child(3) .role-name .role-img{
+            background-image:url('./xiyou/ren/fyn.png')
+        }
+        #role-show .zu:nth-child(1) .role ul li:nth-child(4) .role-name .role-img{
+            background-image:url('./xiyou/ren/ynx.png')
+        }
+        #role-show .zu:nth-child(1) .role ul li:nth-child(5) .role-name .role-img{
+            background-image:url('./xiyou/ren/wme.png')
+        }
+        #role-show .zu:nth-child(1) .role ul li:nth-child(6) .role-name .role-img{
+            background-image:url('./xiyou/ren/yws.png')
+        }
+        /* 设置展开的种族的宽度 */
+        #role-show #active-zu{
+            width:1020px;
+        }
+        /* 展开的种族的名字样式 */
+        #role-show #active-zu .zuname{
+            background-color:#F24854;
+        }
+        #role-show #active-zu .zuname .sanjiao{
+            display:block;
+        }
+        #role-show .zu .role ul li.active-role{
+            width:540px;
+            background-color:#F5F9FF;
+        }
+    </style>
+</head>
+<body>
+    <!-- 定义容器,显示所有的人物角色 -->
+    <div id="role-show">
+        <!-- 定义种族的容器 -->
+        <!-- id=active-zu表示当前的种族 -->
+        <div class="zu" id="active-zu">
+            <!-- 种族的名字 -->
+            <div class="zuname">
+                <span>人族</span>
+                <div class="sanjiao"></div>
+            </div>
+            <!-- 显示种族下人物 -->
+            <div class="role">
+                <ul>
+                    <li class="active-role">
+                        <!-- 角色介绍 -->
+                        <div class="role-intro">
+                            <img src="/home/aixiao/桌面/xiyou/ren/jxk_big.png" alt="">
+                            <div class = 'jieshao'>仙侠客　．　人族</div>
+                            <div class="menpai">可入门派</div>
+                            <div class="jinru">大唐官府、方寸山、化生寺、<br>神木林、天机城</div>
+                        </div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name">
+                            <span>剑侠客</span>
+                            <div class="role-img"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- 角色介绍 -->
+                        <div class="role-intro">
+                            <img src="/home/aixiao/桌面/xiyou/ren/xys_big.png" alt="">
+                        </div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name">
+                            <span>逍遥生</span>
+                            <div class="role-img"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- 角色介绍 -->
+                        <div class="role-intro">
+                            <img src="/home/aixiao/桌面/xiyou/ren/fyn_big.png" alt="">
+                        </div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name">
+                            <span>飞燕儿</span>
+                            <div class="role-img"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- 角色介绍 -->
+                        <div class="role-intro">
+                            <img src="/home/aixiao/桌面/xiyou/ren/ynx_big.png" alt="">
+                        </div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name">
+                            <span>英女侠</span>
+                            <div class="role-img"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- 角色介绍 -->
+                        <div class="role-intro">
+                            <img src="/home/aixiao/桌面/xiyou/ren/wme_big.png" alt="">
+                        </div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name">
+                            <span>巫蛮儿</span>
+                            <div class="role-img"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- 角色介绍 -->
+                        <div class="role-intro">
+                            <img src="/home/aixiao/桌面/xiyou/ren/yws_big.png" alt="">
+                        </div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name">
+                            <span>偃无师</span>
+                            <div class="role-img"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="zu">
+            <!-- 种族的名字 -->
+            <div class="zuname">
+                <span>魔族</span>
+                <div class="sanjiao"></div>
+            </div>
+            <!-- 显示种族下人物 -->
+            <div class="role">
+                <ul>
+                    <li class="active-role">
+                        <!-- 角色介绍 -->
+                        <div class="role-intro"></div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name"></div>
+                    </li>
+                    <li>
+                        <!-- 角色介绍 -->
+                        <div class="role-intro"></div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name"></div>
+                    </li>
+                    <li>
+                        <!-- 角色介绍 -->
+                        <div class="role-intro"></div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name"></div>
+                    </li>
+                    <li>
+                        <!-- 角色介绍 -->
+                        <div class="role-intro"></div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name"></div>
+                    </li>
+                    <li>
+                        <!-- 角色介绍 -->
+                        <div class="role-intro"></div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name"></div>
+                    </li>
+                    <li>
+                        <!-- 角色介绍 -->
+                        <div class="role-intro"></div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="zu">
+            <!-- 种族的名字 -->
+            <div class="zuname">
+                <span>仙族</span>
+                <div class="sanjiao"></div>
+            </div>
+            <!-- 显示种族下人物 -->
+            <div class="role">
+                <ul>
+                    <li class="active-role">
+                        <!-- 角色介绍 -->
+                        <div class="role-intro"></div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name"></div>
+                    </li>
+                    <li>
+                        <!-- 角色介绍 -->
+                        <div class="role-intro"></div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name"></div>
+                    </li>
+                    <li>
+                        <!-- 角色介绍 -->
+                        <div class="role-intro"></div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name"></div>
+                    </li>
+                    <li>
+                        <!-- 角色介绍 -->
+                        <div class="role-intro"></div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name"></div>
+                    </li>
+                    <li>
+                        <!-- 角色介绍 -->
+                        <div class="role-intro"></div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name"></div>
+                    </li>
+                    <li>
+                        <!-- 角色介绍 -->
+                        <div class="role-intro"></div>
+                        <!-- 角色的名字 -->
+                        <div class="role-name"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    //获取元素
+    var zunames = document.querySelectorAll('.zuname');
+    //获取所有的角色li
+    var rolelis = document.querySelectorAll('.role ul li');
+    //设置zuname的单击事件
+    for(var i = 0;i<zunames.length;i++){
+        zunames[i].onclick = function(){
+            //控制active-zu的id的移出与添加
+            var activezu = document.querySelector('#active-zu');
+            activezu.removeAttribute('id');
+            this.parentNode.setAttribute('id','active-zu');
+        }
+    }
+    //设置定时器的标志
+    var run;
+    //设置角色li的鼠标移入事件
+    for(var i=0;i<rolelis.length;i++){
+        rolelis[i].onmouseenter = function(){
+            //让鼠标在该元素上停留一定的时间,表示要显示当前的角色
+            //临时存储this上下文环境
+            var that = this;
+            run = setTimeout(function(){
+                var activerole = that.parentNode.querySelector('.active-role');
+            //移除类名
+            activerole.removeAttribute('class');
+            //自身添加类名
+            that.className='active-role';
+            },200)
+        }
+        //设置移出事件,清除定时器
+        rolelis[i].onmouseleave = function(){
+            //清除定时器
+            clearTimeout(run);
+        }
+    }
+</script>
+</html>

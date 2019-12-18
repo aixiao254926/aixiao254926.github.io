@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #red{
+            width:200px;
+            height:200px;
+            background:red;
+            transition: all 0.3s;
+        }
+        .la{
+            width:200px;
+            height:200px;
+            background:red;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id = "red"></div>
+    <div class = "la"></div>
+    <div class = "la"></div>
+    <div class = "la"></div>
+    <div class = "la"></div>
+    <div class = "la"></div>
+    <div class = "la"></div>
+</body>
+<script>
+    var red = document.getElementById("red");
+    red.onclick=function(){
+        red.style.borderRadius="50%";
+        red.style.background="blue";
+    }
+    //对于所有类名为la获取元素
+    var la = document.getElementsByClassName("la");
+    for(var i=0;i<la.length;i++){
+        la[i].onmouseover = function(){
+            this.style.background = "blue";
+        }
+        la[i].onmouseout = function(){
+            this.style.background = "red";
+        }
+    }
+</script>
+</html>

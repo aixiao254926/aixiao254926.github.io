@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #show{
+            width:600px;
+            height:200px;
+            border:5px solid cyan;
+            border-radius: 20px;
+            margin: 0 auto;
+            margin-top:200px;
+            text-align: center;
+            font-size:24px;
+            line-height: 200px;
+            font-family: "微软雅黑";
+        }
+    </style>
+</head>
+<body>
+    <div id="show">
+        <!-- 2019年11月30日12时00分00秒星期六 -->
+    </div>
+</body>
+<script>
+    var date = document.getElementById('show');
+    function setTime(){
+            var time = new Date();
+        var year = time.getUTCFullYear();
+        var month = fillZero(time.getUTCMonth()+1);
+        var day = fillZero(time.getDate()); 
+        var h = fillZero(time.getHours());
+        var m = fillZero(time.getMinutes());
+        var s = fillZero(time.getSeconds());
+        var weeks = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六']
+        var w = weeks[time.getDay()];
+        function fillZero(i){
+            return i=i<10?'0'+i:i;
+            }
+        date.innerHTML = year + '年' + month +'月' + day +'日  ' + h + '时'
+        + m + '分' + s + '秒  ' + w;
+        }
+    setTime();
+    setInterval(function(){
+        setTime();
+    },1000)
+</script>
+</html>

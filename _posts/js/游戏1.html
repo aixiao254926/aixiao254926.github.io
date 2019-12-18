@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        /* 背景 */
+        #back{
+            height:500px;
+            width:500px;
+            background:aqua;
+            position:relative;
+        }
+        /* 小球 */
+        #ball{
+            height:30px;
+            width:30px;
+            background:black;
+            position:absolute;
+            border-radius: 100%;
+        }
+        /* 黑板 */
+        #board{
+            height:30px;
+            width:60px;
+            background:blueviolet;
+            position:absolute;
+        }
+        #box{
+            height:50px;
+            width:50px;
+            background:yellow;
+            position:absolute;
+            border-radius: 30%;
+        }
+        #score{
+            font-size:20px;
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="back">
+        <div id="ball"></div>
+        <div id="board"></div>
+        <div id="box"></div>
+        <div id="score"></div>
+    </div>
+</body>
+<script>
+    var back  = document.getElementById('back');
+    var ball  = document.getElementById('ball');
+    var board = document.getElementById('board');
+    var box = document.getElementById('box');
+    var score = document.getElementById('score');
+    //初始化小球的位置信息
+    ball.init = function(){
+        this.style.top  = 0 + 'px';
+        this.style.left = 0 + 'px';
+    }
+    //小球速度
+    ball.speedX = 5;
+    ball.speedY = 3;
+    ball.status = 1;
+    //小球的运动方式
+    ball.run = function(){
+        this.style.left = parseInt(this.style.left) + this.speedX + 'px';
+        this.style.top = parseInt(this.style.top) + this.speedY + 'px';
+        this.check(parseInt(this.style.left),parseInt(this.style.top));
+        box.info();
+    }
+    //初始化
+    ball.init();
+    //让小球动起来
+    var hand = setInterval(function(){
+        ball.run();
+    },10);
+    //x轴反弹
+    ball.turnX = function(){
+        this.speedX = -this.speedX;
+    }
+    //y轴反弹
+    ball.turnY = function(){
+        this.speedY = -this.speedY;
+    }
+    //获取实时位置
+    ball.check = function(x,y){
+        if(x+30 >= 500 || x <= 0){
+            this.turnX();
+        }
+        if(x>=parseInt(board.style.left)&&
+           x<=parseInt(board.style.left)+60&&
+           y+30>=parseInt(board.style.top)&&
+           y+30<=parseInt(board.style.top)+30){
+               if(this.status == 1){
+                   this.turnY();
+                   this.status = -1;
+               }
+            
+        }
+        if(y+30 >= 500 || y <= 0){
+            if(this.status == -1){
+                this.turnY();
+                this.status = 1;
+            }
+        }
+        //小球到达窗口底边则游戏结束
+        if(y+30 >= 500){
+            alert("game over!")
+            clearInterval(hand);
+        }
+
+    };
+    //鼠标进入黑板,鼠标可以移动木块
+    back.onmousemove = function(e){
+        board.style.left = e.pageX - 30 + 'px';
+        board.style.top = e.pageY - 15 + 'px';
+    }
+    //获取box随机位置
+    box.position = function(){
+        this.style.left = Math.random() * 450 + 'px';
+        this.style.top = Math.random() * 200 + 'px';
+    }
+    //
+    box.position();
+    box.info = function(){
+            //获取小球圆心坐标
+        ball.roundX = parseInt(ball.style.left) + 15;
+        ball.roundY = parseInt(ball.style.top) + 15;
+        //box的判断效果x 和 y 是小球的实时坐标
+        this.check();
+    }
+    box.check = function(){
+        if(
+            ball.roundX>=parseInt(box.style.left)&&
+            ball.roundX<=parseInt(box.style.left)+50&&
+            ball.roundY>=parseInt(box.style.top)&&
+            ball.roundY<=parseInt(box.style.top)+50)
+            {
+                box.position();
+                fen +=10;
+                score.fenshu();
+            }
+    }
+    var fen = 0;
+    score.fenshu = function(){
+        score.innerHTML = '分数:'+fen;
+    }
+</script>
+</html>

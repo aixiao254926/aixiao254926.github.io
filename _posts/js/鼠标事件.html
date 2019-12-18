@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #red{
+            width:200px;
+            height:200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="red"></div>
+</body>
+<script>
+    var red = document.getElementById('red');
+    //单击事件
+    red.onclick = function(){
+        console.log("单击事件!");
+    }
+    //双击事件
+    red.ondblclick = function(){
+        console.log("双击事件!");
+    }
+    //右键事件
+    red.oncontextmenu = function(){
+        console.log("右键事件!");
+    }
+    //鼠标移入事件
+    red.onmouseover = function(){
+        console.log('进来')
+    }
+    //鼠标移除事件
+    red.onmouseout = function(){
+        console.log("移除")
+    }
+    //鼠标移动事件
+    red.onmousemove = function(){
+        console.log('移动')
+    }
+    //鼠标按下事件
+    red.onmousedown = function(){
+        console.log('按下')
+    }
+    //鼠标抬起事件
+    red.onmouseup = function(){
+        console.log('抬起')
+    }
+</script>
+</html>

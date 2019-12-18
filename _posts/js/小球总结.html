@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #ball{
+            width:100px;
+            height:100px;
+            background:red;
+            position:absolute;
+            /* border-radius: 50%; */
+        }
+        #ball1{
+            width:100px;
+            height:100px;
+            background:green;
+            position:absolute;
+            /* border-radius: 50%; */
+        }
+    </style>
+</head>
+<body>
+    <div id="ball"></div>
+    <div id="ball1"></div>
+</body>
+<script>
+    var ball = document.getElementById('ball');
+    var ball1 = document.getElementById('ball1');
+    var nw = window.innerWidth;
+    var nh = window.innerHeight;
+    ball1.style.left = nw - ball1.offsetWidth + 'px';
+    window.onresize = function(){
+        nw = window.innerWidth;
+        nh = window.innerHeight;
+        ball1.style.left = nw - ball1.offsetWidth + 'px';
+    }
+    function rand(m,n){
+        var num = Math.floor(Math.random()*(n-m+1))+m;
+        return num;
+    }
+    function color(){
+        var r = rand(0,255);
+        var g = rand(0,255);
+        var b = rand(0,255);
+        ball.style.background = 'rgb('+r+','+g+','+b+')';
+        ball1.style.background = 'rgb('+r+','+g+','+b+')';
+    }
+    var stepX = 5;
+    var stepx = 5;
+    var stepY = 5;
+    var stepy = 5;
+    var run = setInterval(function(){
+            newleft = ball.offsetLeft + stepX;
+            newtop = ball.offsetTop + stepx;
+            newleft1 = ball1.offsetLeft - stepY;
+            newtop1 = ball1.offsetTop + stepy;
+            if(ball.offsetLeft>=ball1.offsetLeft-100){
+                stepX = -5;
+                stepY = -5;
+                color();
+            }
+            if(newleft <= 0){
+                stepX = 5;
+                color();
+            }
+            if(newleft >= nw-ball.offsetWidth){
+                stepX = -5;
+                color();
+            }
+            if(newtop >= nh - ball.offsetHeight){
+                stepx = -5;
+                color();
+            }
+            if(newtop <= 0){
+                stepx=5;
+                color();
+            }
+            if(newleft1 <= 0){
+                stepY = -5;
+                color();
+            }
+            if(newleft1 >= nw-ball1.offsetWidth){
+                stepY = 5;
+                color();
+            }
+            if(newtop1 >= nh - ball1.offsetHeight){
+                stepy = -5;
+                color();
+            }
+            if(newtop1 <= 0){
+                stepy=5;
+                color();
+            }
+            ball.style.left = newleft + 'px';
+            ball.style.top = newtop + 'px';
+            ball1.style.left = newleft1 + 'px';
+            ball1.style.top = newtop1 + 'px';
+        },5)
+    window.onkeydown = function(e){
+        switch(e.keyCode){
+            case 32:
+                alert('结束!')
+                clearInterval(run);
+                break;}
+    }
+</script>
+</html>

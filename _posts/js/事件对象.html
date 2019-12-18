@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #red{
+            width:400px;
+            height:400px;
+            border:2px solid red;
+            background:#ccc;
+            margin:0 auto;
+            margin-top:200px; 
+        }
+    </style>
+</head> 
+<body>
+    <div id="red"></div>
+</body>
+<script>
+    var red = document.getElementById('red');
+    red.onmousemove = function(e){
+        // console.log(e.clientX,e.clientY);
+        // console.log(e.pageX,e.pageY); 
+    }
+    red.onclick = function(){
+        console.log(this.offsetWidth);
+        console.log(this.offsetHeight);
+        console.log(this.offsetLeft);
+        console.log(this.offsetTop);
+    }
+</script>
+</html>

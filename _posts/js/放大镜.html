@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #show{
+            width:350px;
+            height:350px;
+            border:1px solid #ccc;
+            margin-left:200px;
+            margin-top:120px;
+            position: relative;
+        }
+        #small{
+            width:350px;
+            height:350px;
+        }
+        #big{
+            width:350px;
+            height:350px;
+            border:1px solid #ccc;
+            position: absolute;
+            left:420px;
+            top :0px;
+            overflow: hidden;
+            display:none;
+        }
+        img{
+            display:block;
+        }
+        #small>img{
+            width:350px;
+            height:350px;
+            position:absolute;
+        }
+        #small>#move{
+            width:160px;
+            height:172px;
+            background:rgba(116, 114, 82, 0.2);
+            position:absolute;
+            display:none;
+        }
+        #bigc{
+            position:absolute;
+        }
+    </style>
+</head>
+<body> 
+    <!-- 实现基本的页面 -->
+    <div id="show">
+        <div id="small">
+            <img src="/home/aixiao/桌面/js/1.gif" alt="">
+            <div id="move"></div>
+        </div>
+        <div id="big">
+            <img id = 'bigc' src="/home/aixiao/桌面/js/1.gif" alt="">
+        </div>
+    </div>
+</body>
+<script>
+    var move = document.getElementById('move');
+    var small = document.getElementById('small');
+    var show = document.getElementById('show');
+    var bigc = document.getElementById('bigc');
+    small.onmouseover = function(){
+        move.style.display = 'block';
+        big.style.display = 'block';
+    }
+    small.onmouseout = function(){
+        move.style.display = 'none';
+        big.style.display = 'none';
+    }
+    small.onmousemove = function(e){
+         var e = e || window.event;
+         var newleft = e.pageX - move.offsetWidth - show.offsetLeft;
+         var newtop = e.pageY - move.offsetHeight - show.offsetTop;
+         if(newleft<=0){
+             newleft = 0;
+         }
+         if(newleft >=(small.offsetWidth-move.offsetWidth)){
+             newleft = small.offsetWidth-move.offsetWidth
+         }
+         if(newtop<=0){
+             newtop = 0;
+         }
+         if(newtop >=(small.offsetHeight-move.offsetHeight)){
+             newtop = small.offsetHeight-move.offsetHeight
+             }
+         move.style.left = newleft+'px';
+         move.style.top = newtop+'px';
+         var newbigleft = newleft *bigc.offsetWidth/small.offsetWidth;
+         var newbigtop = newtop *bigc.offsetHeight/small.offsetHeight;
+         bigc.style.left = -newbigleft + 'px';
+         bigc.style.top = -newbigtop +'px';
+    }
+</script>
+</html>

@@ -1,0 +1,14 @@
+#red{
+    width:200px;
+    height:200px;
+}
+#green{
+    width:500px;
+    height:500px;
+}
+#while{
+    background:red;
+}
+body{
+    display: inline;
+}

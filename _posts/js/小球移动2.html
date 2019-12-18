@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #ball{
+            width:100px;
+            height:100px;
+            background:salmon;
+            position:absolute;
+        }
+        #ball1{
+            width:100px;
+            height:100px;
+            background: slategrey;
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="ball"></div>
+    <div id="ball1"></div>
+</body>
+<script>
+    var ball = document.getElementById('ball');
+    var ball1 = document.getElementById('ball1');
+    var nh = window.innerHeight;
+    ball1.style.top = nh-ball.offsetHeight+'px';
+    window.onresize = function(){
+        nh = window.innerHeight;
+        ball1.style.top = nh-ball.offsetHeight+'px';
+    }
+    var stepX = 5;
+    var stepY = 5;
+    setInterval(function(){
+        newtop = ball.offsetTop + stepX;
+        newtop1 = ball1.offsetTop - stepY;
+        if(ball.offsetTop >= ball1.offsetTop-100){
+            stepX = -5;
+            stepY = -5;
+        }
+        if(newtop >= nh - ball.offsetHeight){
+            stepX *= -1;
+        }
+        if(newtop <= 0){
+            stepX *= -1;
+        }
+        if(newtop1 <= 0){
+            stepY *= -1;
+        }
+        if(newtop1 >= nh - ball.offsetHeight){
+            stepY *= -1;
+        }
+        ball.style.top = newtop + 'px';
+        ball1.style.top = newtop1 + 'px';
+    },10)
+</script>
+</html>

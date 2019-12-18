@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #ball{
+            width:100px;
+            height:100px;
+            background:red;
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="ball"></div>
+</body>
+    <script>
+        //获取元素
+        var ball = document.getElementById('ball');
+        //获取可视化页面的高度
+        var nh = window.innerHeight;
+        //随机缩小屏幕高度实时获取
+        window.onresize = function(){
+            nh = window.innerHeight;
+        }
+        //定义步经
+        var step = 5;
+        //定义周期性定时器,使小球动起来
+        setInterval(function(){
+            //新的top值
+            var newtop = ball.offsetTop + step;
+            //判断小方块向下超出的判断
+            if(newtop>=nh-ball.offsetHeight){
+                step = -5;
+            }
+            //判断小方块向上超出的判断
+            if(newtop<=0){
+                step = 5;
+                //每执行一次高度除以2
+                nh/=2;
+            }
+            //如果小方块高度大于页面高度 从新初始页面高度
+            if(ball.offsetHeight>=nh){
+                nh = window.innerHeight;
+            }
+            ball.style.top = newtop + 'px';
+        },5)
+    </script>
+</html>

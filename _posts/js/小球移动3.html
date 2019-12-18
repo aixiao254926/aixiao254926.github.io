@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #ball{
+            width:100px;
+            height:100px;
+            background:red;
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="ball"></div>
+</body>
+<script>
+    var ball = document.getElementById('ball');
+    var nw = window.innerWidth;
+    var nh = window.innerHeight;
+    var stepx =5;
+    var stepy =5;
+    setInterval(function(){
+        var newleft = ball.offsetLeft+stepx;
+        var newtop = ball.offsetTop+stepy;
+        if(newleft>=nw-ball.offsetWidth){
+            stepx = -5;
+        }
+        if(newleft<=0){
+            stepx = 5;
+        }
+        if(newtop>=nh-ball.offsetHeight){
+            stepy=-5;
+        }
+        if(newtop<=0){
+            stepy = 5;
+            nh/=2;
+        }
+        if(ball.offsetHeight>=nh){
+            nh = window.innerHeight;
+        }
+        ball.style.left = newleft + 'px';
+        ball.style.top = newtop + 'px';
+    },5)
+</script>
+</html>
