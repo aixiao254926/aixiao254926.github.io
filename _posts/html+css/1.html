@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #show{
+            width:96%;
+            height:auto;
+            background:#ededed;
+            margin:0 auto;
+            overflow: hidden;
+            padding-bottom: 10px;
+        }
+        #show .showlist{
+            width:24%;
+            height:auto;
+            float:left;
+            margin-left:0.8%;
+            margin-top:10px;
+        }
+        #show .showlist img{
+            width:100%;
+            display:block;
+        }
+        @media all and (max-width: 1024px){
+            #show .showlist{
+                width:32%;
+                margin-left:1%;
+            }
+        }
+        @media all and (max-width: 720px){
+            #show .showlist{
+                width:48%;
+                margin-left:1.33%;
+            }
+        }
+        @media all and (max-width: 420px){
+            #show .showlist{
+                width:96%;
+                margin-left:2%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="show">
+        <div class="showlist">
+            <img src="./1.jpeg" alt="">
+        </div>
+        <div class="showlist">
+            <img src="./2.jpeg" alt="">
+        </div>
+        <div class="showlist">
+            <img src="./3.jpg" alt="">
+        </div>
+        <div class="showlist">
+            <img src="./4.jpg" alt="">
+        </div>
+        <div class="showlist">
+            <img src="./5.jpg" alt="">
+        </div>
+        <div class="showlist">
+            <img src="./6.jpg" alt="">
+        </div>
+        <div class="showlist">
+            <img src="./7.jpg" alt="">
+        </div>
+        <div class="showlist">
+            <img src="./8.jpg" alt="">
+        </div>
+    </div>
+</body>
+</html>
